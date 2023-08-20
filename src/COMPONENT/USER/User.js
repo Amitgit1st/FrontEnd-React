@@ -51,8 +51,8 @@ const User = (props) => {
     }
 
     return (
-        <div>
-            {Error && <ErrorModule title={Error.title} message={Error.message} onConfirm={ErrorHandler} />}
+        [
+            (Error && <ErrorModule title={Error.title} message={Error.message} onConfirm={ErrorHandler} />),
 
             <Card className={classes.input}>
                 <form onSubmit={saveUserDetails}>
@@ -70,7 +70,7 @@ const User = (props) => {
                 </form>
 
             </Card>
-        </div>
+      ]
     )
 }
 export default User;
