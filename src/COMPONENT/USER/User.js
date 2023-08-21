@@ -52,9 +52,16 @@ const User = (props) => {
 
     return (
         [
-            (Error && <ErrorModule title={Error.title} message={Error.message} onConfirm={ErrorHandler} />),
+            Error && (
+                <ErrorModule 
+                        key="error-modal"
+                        title={Error.title}
+                        message={Error.message} 
+                        onConfirm={ErrorHandler}
+                        />
+            ),
 
-            <Card className={classes.input}>
+            <Card key="add-user-card" className={classes.input}>
                 <form onSubmit={saveUserDetails}>
                     <div>
                         <label htmlFor="username">Username</label>
