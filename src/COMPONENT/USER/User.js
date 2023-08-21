@@ -3,6 +3,7 @@ import classes from './User.module.css';
 import Card from "../UI/Card";
 import Button from "../UI/Button";
 import ErrorModule from "../UI/ErrorModule";
+import Wrapper from "../Helper/Wrapper";
 
 
 
@@ -51,17 +52,9 @@ const User = (props) => {
     }
 
     return (
-        [
-            Error && (
-                <ErrorModule 
-                        key="error-modal"
-                        title={Error.title}
-                        message={Error.message} 
-                        onConfirm={ErrorHandler}
-                        />
-            ),
-
-            <Card key="add-user-card" className={classes.input}>
+     <Wrapper>
+            {Error && <ErrorModule  title={Error.title} message={Error.message} onConfirm={ErrorHandler} />}
+            <Card  className={classes.input}>
                 <form onSubmit={saveUserDetails}>
                     <div>
                         <label htmlFor="username">Username</label>
@@ -77,7 +70,9 @@ const User = (props) => {
                 </form>
 
             </Card>
-      ]
+        </Wrapper>
+   
+        
     )
 }
 export default User;
