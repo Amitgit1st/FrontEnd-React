@@ -14,16 +14,22 @@ const Login = (props) => {
   const [formIsValid, setFormIsValid] = useState(false);
 
   useEffect(() => {
-    setFormIsValid(
-      enteredEmail.includes('@') && enteredPassword.trim().length > 6 && enteredCollege.trim().length >6
-    );
-  }, [enteredEmail, enteredPassword,enteredCollege])
+    const timeOut = setTimeout(() => {
+      setFormIsValid(
+        enteredEmail.includes('@') && enteredPassword.trim().length > 6 && enteredCollege.trim().length > 6
+      )
+    }, 500)
+    return () => {
+      clearTimeout(timeOut)
+    }
+
+  }, [enteredEmail, enteredPassword, enteredCollege])
 
   const emailChangeHandler = (event) => {
     setEnteredEmail(event.target.value);
   };
 
-  const collegeChangeHandler=(event)=>{
+  const collegeChangeHandler = (event) => {
     setEnteredCollege(event.target.value)
   };
 
@@ -43,13 +49,13 @@ const Login = (props) => {
     setPasswordIsValid(enteredPassword.trim().length > 6);
   };
 
-  const validatecollegeHandler=()=>{
-    setCollegeIsValid(enteredCollege.trim().length >6)
+  const validatecollegeHandler = () => {
+    setCollegeIsValid(enteredCollege.trim().length > 6)
   };
 
   const submitHandler = (event) => {
     event.preventDefault();
-    props.onLogin(enteredEmail, enteredPassword,enteredCollege);
+    props.onLogin(enteredEmail, enteredPassword, enteredCollege);
   };
 
   return (
@@ -70,8 +76,8 @@ const Login = (props) => {
           />
         </div>
 
-        <div  className={`${classes.control} ${passwordIsValid === false ? classes.invalid : ''
-            }`}>
+        <div className={`${classes.control} ${passwordIsValid === false ? classes.invalid : ''
+          }`}>
           <label htmlFor="college">College Name</label>
           <input
             type="text"
